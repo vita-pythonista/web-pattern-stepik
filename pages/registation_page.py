@@ -1,6 +1,5 @@
-import random
-from typing import Optional, Literal
-from pages.base_page import BasePage
+from typing import Literal
+from base.base_page import BasePage
 
 
 class RegistationPage(BasePage):
@@ -21,29 +20,30 @@ class RegistationPage(BasePage):
     _CREATE_BTN = ("css selector", "input[value='Create an account']")
     _CREATE_ACCOUNT_MESSAGE_POSITIVE = ("css selector", "div.ossn-message-done")
 
+
     def input_firstname(self, firstname: str):
-        self.driver.find_element(*self._FIRST_NAME_FIELD).send_keys(firstname)
+        self.enter_text(self._FIRST_NAME_FIELD, firstname)
 
     def input_lastname(self, lastname: str):
-        self.driver.find_element(*self._LAST_NAME_FIELD).send_keys(lastname)
+        self.enter_text(self._LAST_NAME_FIELD, lastname)
 
     def input_email(self, email: str):
-        self.driver.find_element(*self._EMAIL_FIELD).send_keys(email)
+        self.enter_text(self._EMAIL_FIELD, email)
 
     def input_email_re(self, email: str):
-        self.driver.find_element(*self._REPEAT_EMAIL_FIELD).send_keys(email)
+        self.enter_text(self._REPEAT_EMAIL_FIELD, email)
 
     def input_username(self, username: str):
-        self.driver.find_element(*self._USERNAME_FIELD).send_keys(username)
+        self.enter_text(self._USERNAME_FIELD, username)
 
     def input_password(self, password: str):
-        self.driver.find_element(*self._PASSWORD_FIELD).send_keys(password)
+        self.enter_text(self._PASSWORD_FIELD, password)
 
     def click_birthdate(self):
-        self.driver.find_element(*self._BIRTHDATE_FIELD).click()
+        self.click(self._BIRTHDATE_FIELD)
 
     def select_current_birthdate(self):
-        self.driver.find_element(*self._CURRENT_DAY_FIELD).click()
+        self.click(self._CURRENT_DAY_FIELD)
 
     def select_sex(self, gender: Literal['male', 'female'] = 'male'):
         select_sex = None
@@ -51,15 +51,15 @@ class RegistationPage(BasePage):
             select_sex = self._MALE_SEX_RBTN if gender == 'male' else self._FEMALE_SEX_RBTN
         else:
             ValueError("Another gender does not exist")
-        self.driver.find_element(*select_sex).click()
+        self.click(select_sex)
 
     def check_gdpr_agree(self):
-        self.driver.find_element(*self._GDPR_CHECKBOX).click()
+        self.click(self._GDPR_CHECKBOX)
 
     def click_create_account(self):
-        self.driver.find_element(*self._CREATE_BTN).click()
+        self.click(self._CREATE_BTN)
 
     def assert_positve_message_about_creation(self):
-        msg = self.driver.find_element(*self._CREATE_ACCOUNT_MESSAGE_POSITIVE)
+        msg = self.find_element(self._CREATE_ACCOUNT_MESSAGE_POSITIVE)
         assert msg.is_displayed()
         assert "Your account has been registered!" in msg.text
