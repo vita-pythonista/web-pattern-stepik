@@ -1,6 +1,8 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver import ActionChains
+
 
 class BasePage:
 
@@ -19,6 +21,16 @@ class BasePage:
     def click(self, locator: tuple):
         element = self.find_element(locator)
         element.click()
+
+    def click_mouse(self, locator: tuple):
+        element = self.find_element(locator)
+        action = ActionChains(self.driver).click(element)
+        action.perform()
+
+
+    def clear(self, locator: tuple):
+        element = self.find_element(locator)
+        element.clear()
 
     def enter_text(self, locator: tuple, text: str):
         element = self.find_element(locator)

@@ -10,4 +10,6 @@ class TestPost(BaseTest):
         self.login_page.input_username("administrator")
         self.login_page.input_password("administrator")
         self.login_page.click_login_button()
-        time.sleep(3)
+        self.home_page.wait_load_page()
+        self.home_page.create_post("Случайный текст")
+        time.sleep(4)
