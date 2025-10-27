@@ -7,4 +7,4 @@ class BasePage:
         self.driver: WebDriver = driver
 
     def open(self):
-        self.driver.get(self.PAGE_URL)
+        self.driver.get(self._PAGE_URL)
