@@ -2,9 +2,10 @@ from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
+from metaclass.meta_locator import MetaLocator
 
 
-class BasePage:
+class BasePage(metaclass=MetaLocator):
 
     def __init__(self, driver):
         self.driver: WebDriver = driver

@@ -5,9 +5,9 @@ class LoginPage(BasePage):
 
     _PAGE_URL = "https://demo.opensource-socialnetwork.org/login"
 
-    _USERNAME_FIELD = ("css selector", "[name='username']")
-    _PASSWORD_FIELD = ("css selector", "[name='password']")
-    _LOGIN_BTN = ("css selector", ".btn[value='Login']")
+    _USERNAME_FIELD = "[name='username']"
+    _PASSWORD_FIELD = "[name='password']"
+    _LOGIN_BTN = ".btn[value='Login']"
 
     def input_username(self, username: str):
         self.clear(self._USERNAME_FIELD)
