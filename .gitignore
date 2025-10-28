@@ -22,3 +22,7 @@ dist/
 
 # Контрольные точки в Jupyter notebook лучше оставить в стороне
 .ipynb_checkpoints
+
+# Папка для хранения
+screenshots
+allure-results

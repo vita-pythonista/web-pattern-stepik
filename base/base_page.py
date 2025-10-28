@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -11,7 +12,8 @@ class BasePage(metaclass=MetaLocator):
         self.driver: WebDriver = driver
 
     def open(self):
-        self.driver.get(self._PAGE_URL)
+        with allure.step(f"Open page: {self._PAGE_URL}"):
+            self.driver.get(self._PAGE_URL)
 
     def find_element(self, locator: tuple):
         element = WebDriverWait(self.driver, 10).until(

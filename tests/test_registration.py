@@ -1,8 +1,13 @@
+import allure
+
 from base.base_test import BaseTest
 
 
+@allure.epic("Registration")
+@allure.feature("New positive registation")
 class TestRegistationPage(BaseTest):
 
+    @allure.story("Check positive registration form")
     def test_registration(self, fake_user):
         self.registation_page.open()
         self.registation_page.input_firstname(firstname=fake_user['firstname'])
@@ -15,6 +20,7 @@ class TestRegistationPage(BaseTest):
         self.registation_page.select_current_birthdate()
         self.registation_page.select_sex()
         self.registation_page.check_gdpr_agree()
+        self.registation_page.create_screenshot_before_send_request()
         self.registation_page.click_create_account()
         self.registation_page.assert_positve_message_about_creation()
 

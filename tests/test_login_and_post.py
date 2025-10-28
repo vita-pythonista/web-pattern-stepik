@@ -1,8 +1,12 @@
+import allure
+
 from base.base_test import BaseTest
 
-
+@allure.epic("Administrator")
+@allure.feature("Login and Post")
 class TestPost(BaseTest):
 
+    @allure.story("Check login as admin and make post")
     def test_publish_post(self):
         post_text = "Случайный текст"
         self.login_page.open()
