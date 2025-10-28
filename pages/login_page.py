@@ -23,3 +23,8 @@ class LoginPage(BasePage):
     @allure.step("Click login")
     def click_login_button(self):
         self.click(self._LOGIN_BTN)
+
+    def login_as_user(self, username: str, password: str):
+        self.input_username(username)
+        self.input_password(password)
+        self.click(self._LOGIN_BTN)
