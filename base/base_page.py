@@ -18,6 +18,12 @@ class BasePage:
         )
         return element
 
+    def find_elements(self, locator: tuple):
+        elements = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_all_elements_located((locator[0], locator[1]))
+        )
+        return elements
+
     def click(self, locator: tuple):
         element = self.find_element(locator)
         element.click()

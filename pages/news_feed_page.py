@@ -11,7 +11,8 @@ class HomePage(BasePage):
 
     _POST_BLOCK = ("css_selector", "#ossn-wall-form")
     _POST_TEXTAREA = ("xpath", "//*[@id='ossn-wall-form']/fieldset/div[2]/textarea")
-    _POST_PUBLISH_BTN = ("css_selector", ".ossn-wall-post-button-container")
+    _POST_PUBLISH_BTN = ("xpath", "//input[@type='submit']")
+    _PUBLISHED_POSTS = ("xpath", "//*[starts-with(@id,'activity-item')]")
 
     def wait_load_page(self):
         wait = WebDriverWait(self.driver, 10)
@@ -21,4 +22,7 @@ class HomePage(BasePage):
         self.click_mouse(self._POST_TEXTAREA)
         self.enter_text(self._POST_TEXTAREA, text)
         self.click_mouse(self._POST_PUBLISH_BTN)
-        time.sleep(5)
+
+    def find_published_posts(self):
+        elements = self.find_elements(self._PUBLISHED_POSTS)
+        return elements
