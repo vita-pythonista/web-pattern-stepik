@@ -10,8 +10,8 @@ class TestPost(BaseTest):
     def test_publish_post(self):
         post_text = "Случайный текст"
         self.login_page.open()
-        self.login_page.login_as_user(username="administrator",
-                                      password="administrator")
+        self.login_page.login_as_user(username=self.data.LOGIN,
+                                      password=self.data.PASSWORD)
         self.home_page.wait_load_page()
         self.home_page.create_post(post_text)
         posts = self.home_page.find_published_posts()

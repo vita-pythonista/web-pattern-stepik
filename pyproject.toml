@@ -12,6 +12,7 @@ pytest = "^8.4.2"
 webdriver-manager = "^4.0.2"
 faker = "^37.12.0"
 allure-pytest = "^2.15.0"
+python-dotenv = "^1.2.1"
 
 
 [build-system]
