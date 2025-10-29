@@ -1,5 +1,5 @@
 import allure
-
+import pytest
 from base.base_test import BaseTest
 
 
@@ -23,4 +23,20 @@ class TestRegistationPage(BaseTest):
         self.registation_page.create_screenshot_before_send_request()
         self.registation_page.click_create_account()
         self.registation_page.assert_positve_message_about_creation()
+
+    @allure.story("Check positive registration form with 3 users")
+    @pytest.mark.parametrize("add_users", [2], indirect=True)
+    def test_registration_with_three_users(self, fake_user, add_users):
+        user2, user3 = add_users
+        self.registation_page().open()
+        self.registation_page().input_firstname(firstname=fake_user['firstname'])
+        self.registation_page().input_lastname(lastname=fake_user['lastname'])
+        # действия 2-го пользователя
+        self.registation_page(user2).open()
+        self.registation_page(user2).input_firstname(firstname=fake_user['firstname'])
+        self.registation_page(user2).input_lastname(lastname=fake_user['lastname'])
+        # действия 3-го пользователя
+        self.registation_page(user3).open()
+        self.registation_page(user3).input_firstname(firstname=fake_user['firstname'])
+        self.registation_page(user3).input_lastname(lastname=fake_user['lastname'])
 

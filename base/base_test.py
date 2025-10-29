@@ -7,6 +7,6 @@ class BaseTest:
 
     def setup_method(self):
         self.data = Credentials()
-        self.registation_page = RegistationPage(self.driver)
-        self.login_page = LoginPage(self.driver)
-        self.home_page = HomePage(self.driver)
+        self.registation_page = lambda driver=self.driver: RegistationPage(driver)
+        self.login_page = lambda driver=self.driver: LoginPage(driver)
+        self.home_page = lambda driver=self.driver: HomePage(driver)

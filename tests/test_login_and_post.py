@@ -1,5 +1,4 @@
 import allure
-
 from base.base_test import BaseTest
 
 @allure.epic("Administrator")
@@ -18,3 +17,4 @@ class TestPost(BaseTest):
         posts_with_text = [post for post in posts
                            if post_text in post.text]
         assert posts_with_text, f"Any posts with text {post_text} are not published"
+
