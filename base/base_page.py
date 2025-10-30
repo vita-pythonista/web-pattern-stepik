@@ -15,32 +15,42 @@ class BasePage(metaclass=MetaLocator):
         with allure.step(f"Open page: {self._PAGE_URL}"):
             self.driver.get(self._PAGE_URL)
 
-    def find_element(self, locator: tuple):
+    def find_element(self, locator: tuple | str):
         element = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((locator[0], locator[1]))
         )
         return element
 
-    def find_elements(self, locator: tuple):
+    def find_elements(self, locator: tuple | str):
         elements = WebDriverWait(self.driver, 10).until(
             EC.presence_of_all_elements_located((locator[0], locator[1]))
         )
         return elements
 
-    def click(self, locator: tuple):
+    def click(self, locator: tuple | str):
         element = self.find_element(locator)
         element.click()
 
-    def click_mouse(self, locator: tuple):
+    def scroll_to(self, locator: tuple | str):
+        element = self.find_element(locator)
+        self.driver.execute_script(
+            "arguments[0].scrollIntoView({behavior: 'smooth', block: 'center'});", element)
+
+    def click_mouse(self, locator: tuple | str):
         element = self.find_element(locator)
         action = ActionChains(self.driver).click(element)
         action.perform()
 
+    def hover_mouse(self, locator: tuple | str):
+        element = self.find_element(locator)
+        action = ActionChains(self.driver).move_to_element(element)
+        action.pause(1)
+        action.perform()
 
-    def clear(self, locator: tuple):
+    def clear(self, locator: tuple | str):
         element = self.find_element(locator)
         element.clear()
 
-    def enter_text(self, locator: tuple, text: str):
+    def enter_text(self, locator: tuple | str, text: str):
         element = self.find_element(locator)
         element.send_keys(text)

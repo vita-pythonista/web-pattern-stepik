@@ -1,6 +1,6 @@
 from pages.registation_page import RegistationPage
 from pages.login_page import LoginPage
-from pages.news_feed_page import HomePage
+from pages.home_page.home_page import HomePage
 from data.credentials import Credentials
 
 class BaseTest:

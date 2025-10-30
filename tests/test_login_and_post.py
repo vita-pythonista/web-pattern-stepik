@@ -12,8 +12,8 @@ class TestPost(BaseTest):
         self.login_page().login_as_user(username=self.data.LOGIN,
                                       password=self.data.PASSWORD)
         self.home_page().wait_load_page()
-        self.home_page().create_post(post_text)
-        posts = self.home_page().find_published_posts()
+        self.home_page().post_block.create_post(post_text)
+        posts = self.home_page().post_block.find_published_posts()
         posts_with_text = [post for post in posts
                            if post_text in post.text]
         assert posts_with_text, f"Any posts with text {post_text} are not published"
